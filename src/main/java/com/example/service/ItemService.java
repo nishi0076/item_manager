@@ -42,6 +42,7 @@ public class ItemService {
 		// DTOクラスからフィールドをセット
 		item.setName(itemForm.getName());
 		item.setPrice(itemForm.getPrice());
+		item.setCategoryId(itemForm.getCategoryId());
 		// saveメソッドでデータ保存
 		return this.itemRepository.save(item);
 	}
@@ -62,6 +63,7 @@ public class ItemService {
 		// DTOクラスからフィールドをセット
 		item.setName(itemForm.getName());
 		item.setPrice(itemForm.getPrice());
+		item.setCategoryId(itemForm.getCategoryId());
 		// saveメソッドでデータ保存
 		return this.itemRepository.save(item);
 	}

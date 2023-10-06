@@ -7,13 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "ITEMS")
 public class Item {
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id", insertable = false, updatable = false)
+	private Category category;
 
+	
 	@Id
 	@SequenceGenerator(name = "ITEM_ID_GENERATOR", sequenceName = "ITEM_ID_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_ID_GENERATOR")
@@ -31,6 +38,15 @@ public class Item {
 	
 	@Column(name = "DELETED_AT")
 	private LocalDateTime deletedAt;
+	
+	
+	@Column(name = "CATEGORY_ID")
+	private Integer categoryId;
+
+
+	public Category getCategory() {
+		return category;
+	}
 
 
 	public Integer getId() {
@@ -70,6 +86,16 @@ public class Item {
 
 	public void setDeletedAt(LocalDateTime deletedAt) {
 		this.deletedAt = deletedAt;
+	}
+
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 	
 }

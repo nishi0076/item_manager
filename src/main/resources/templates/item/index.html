@@ -16,6 +16,8 @@
 				<th>id</th>
 				<th>商品</th>
 				<th>価格</th>
+				<!-- カテゴリを追加 -->
+				<th>カテゴリー</th>
 				<th></th>
 				<th></th>
 			</tr>
@@ -26,6 +28,8 @@
 				<td th:text="${item.id}"></td>
 				<td th:text="${item.name}"></td>
 				<td th:text="${item.price}"></td>
+				<!-- カテゴリを表示 -->
+				<td th:text="${item.category.name}"></td>
 				<td>
 					<!-- 編集ページへアクセス -->
 					<form th:action="@{/item/hensyu/{id}(id = ${item.id})}" method="get">
