@@ -1,5 +1,6 @@
 package com.example.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,12 @@ public class ItemService {
 	// データ全件取得
 	public List<Item> findAll() {
 		return this.itemRepository.findAll();
+	}
+	
+	
+	// DELETED_ATカラムがNULLのデータのみ取得
+	public List<Item> findByDeletedAtIsNull() {
+		return this.itemRepository.findByDeletedAtIsNull();
 	}
 	
 	
@@ -60,8 +67,13 @@ public class ItemService {
 	}
 	
 	
-	// データ削除用メソッド
-	public void delete(Integer id) {
-		this.itemRepository.deleteById(id);
+	// データ削除用メソッド(論理削除)
+	public Item delete(Integer id) {
+		// idから該当のEntityクラスを取得
+		Item item = this.findById(id);
+		// EntityクラスのdeletedAtフィールドを現在日時で上書き
+		item.setDeletedAt(LocalDateTime.now());
+		// 更新処理
+		return this.itemRepository.save(item);
 	}
 }
