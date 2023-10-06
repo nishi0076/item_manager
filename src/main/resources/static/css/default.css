@@ -1,0 +1,70 @@
+/* 共通箇所で利用する色を定義 */
+:root {
+    --header-color: #DADADA;
+    --menu-color: #204969;
+}
+
+
+/* 全体の高さとmarginの初期化 */
+body {
+    height: 100vh;
+    margin: 0;
+}
+
+
+/* ヘッダーの調整 */
+.header {
+    background-color: var(--header-color);
+    min-height: 10%;
+}
+
+.header h1 {
+	margin: 0;
+    padding-top: 10px;
+}
+
+
+/* メニューとコンテンツを横並びにし、高さを調整 */
+.main {
+    display: flex;
+    height: 90%;
+}
+
+
+/* サイドメニュー全体の横幅を調整 */
+.side-menu {
+    width: 20%;
+}
+
+/* コンテンツ部分の幅を調整 */
+.contents {
+    width: 80%;
+}
+
+
+/* サイドメニューの調整 */
+.menu-list {
+    background-color: var(--menu-color);
+    border-style: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* メニューの文字を調整 */
+.menu-list a {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+
+/* メニュー内の文字間隔を調整 */
+.menu-list li {
+    margin: 20px 0;
+    padding: 0 10px;
+}
