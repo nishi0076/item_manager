@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.Category;
 import com.example.entity.Item;
@@ -95,6 +96,22 @@ public class ItemController {
 	@PostMapping("sakujyo/{id}")
 	public String sakujyo(@PathVariable("id") Integer id) {
 		this.itemService.delete(id);
+		return "redirect:/item";
+	}
+	
+	
+	// 商品入荷処理の実行
+	@PostMapping(path = "stock/{id}", params = "in")
+	public String nyuka(@PathVariable("id") Integer id, @RequestParam("stock") Integer inputValue) {
+		this.itemService.nyuka(id, inputValue);
+		return "redirect:/item";
+	}
+	
+	
+	// 商品出荷処理の実行
+	@PostMapping(path = "stock/{id}", params = "out")
+	public String shukka(@PathVariable("id") Integer id, @RequestParam("stock") Integer inputValue) {
+		this.itemService.shukka(id, inputValue);
 		return "redirect:/item";
 	}
 }

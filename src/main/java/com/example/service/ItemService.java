@@ -43,6 +43,8 @@ public class ItemService {
 		item.setName(itemForm.getName());
 		item.setPrice(itemForm.getPrice());
 		item.setCategoryId(itemForm.getCategoryId());
+		// 新規登録時には在庫数を0でセット
+		item.setStock(0);
 		// saveメソッドでデータ保存
 		return this.itemRepository.save(item);
 	}
@@ -76,6 +78,28 @@ public class ItemService {
 		// EntityクラスのdeletedAtフィールドを現在日時で上書き
 		item.setDeletedAt(LocalDateTime.now());
 		// 更新処理
+		return this.itemRepository.save(item);
+	}
+	
+	
+	// 入荷処理用メソッド
+	public Item nyuka(Integer id, Integer inputValue) {
+		Item item = this.findById(id);
+		// 商品の在庫数に対して入力値分加算
+		item.setStock(item.getStock() + inputValue);
+		// 在庫数の変動を保存
+		return this.itemRepository.save(item);
+	}
+	
+	
+	// 出荷処理用メソッド
+	public Item shukka(Integer id, Integer inputValue) {
+		Item item = this.findById(id);
+		// 入力値が在庫数以内かを判定
+		if (inputValue <= item.getStock()) {
+			item.setStock(item.getStock() - inputValue);
+		}
+		// 在庫数の変動を保存
 		return this.itemRepository.save(item);
 	}
 }

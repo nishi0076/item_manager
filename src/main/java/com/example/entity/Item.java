@@ -42,6 +42,10 @@ public class Item {
 	
 	@Column(name = "CATEGORY_ID")
 	private Integer categoryId;
+	
+	
+	@Column(name = "STOCK")
+	private Integer stock;
 
 
 	public Category getCategory() {
@@ -96,6 +100,21 @@ public class Item {
 
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}
+
+
+	public Integer getStock() {
+		return stock;
+	}
+
+
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
+
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 }
